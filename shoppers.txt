@@ -1,0 +1,96 @@
+Sally Shopper
+12345
+Basic
+11/01/2013
+Fred Frugal
+67899
+Preferred
+12/15/2013
+Betty Buysalot
+12899
+Preferred
+01/25/2014
+Larry Largefamily
+88888
+Basic
+02/01/2014
+Linda Livesalone
+35647
+Basic
+12/15/2013
+Sam Single
+31311
+Preferred
+12/05/2013
+Kathy Havealotsofkids
+12121
+Basic
+12/30/2013
+Vern Video 
+77777
+Preferred
+11/15/2013
+Benjamin Business
+16161
+Basic
+11/20/2013
+Sam Saddleback
+61616
+Basic
+03/20/2014
+Adam Miller
+23451
+Basic
+06/08/2016
+Reily Otto
+89998
+Preferred
+11/19/2015
+Kevin Chen
+16888
+Preferred
+02/04/2015
+Macy Lorenso
+58972
+Basic
+05/30/2016
+Raj Pranay
+31820
+Basic
+07/22/2014
+Mikhaela Robinson
+76112
+Preferred
+10/02/2013
+Johnny Ash
+90009
+Preferred
+03/20/2015
+Carls Jr
+28374
+Basic
+09/30/2014
+Burger King
+12980
+Basic
+04/22/2015
+Jack Box
+37456
+Basic
+10/19/2013
+Mick Donalds
+88234
+Preferred
+01/25/2013
+Rick Fillay
+72399
+Preferred
+05/05/2014
+Wendy Berg
+88297
+Preferred
+07/06/2015
+Arby Wilson
+55503
+Basic
+11/02/2015

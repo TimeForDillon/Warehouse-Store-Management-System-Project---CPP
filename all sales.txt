@@ -1,0 +1,236 @@
+03/05/2013
+12345
+1 gallon milk
+2.49	13
+03/05/2013
+67899
+Potato Bread
+1.79	20
+03/05/2013
+12899
+Ground Beef
+6.85	1
+03/05/2013
+12899
+Pork Tenderloin
+17.25	2
+03/05/2013
+12899
+Shrek 2
+19.95	1
+03/05/2013
+12345
+Seinfeld Collection
+39.95	1
+03/05/2013
+67899
+The Alamo
+19.95	6
+03/05/2013
+67899
+Most Basic DVD Player
+59.99	1
+03/05/2013
+12345
+EPSON Printer
+59.99	1
+03/05/2013
+88888
+EPSON Printer Cart.
+32.50	5
+03/05/2013
+67899
+Instant Coffee
+6.75	5
+03/05/2013
+12899
+Paper Shredder
+199.99 1
+03/06/2013
+61616
+1 gallon milk
+2.49	5
+03/06/2013
+77777
+Wonder Bread
+1.29	6
+03/06/2013
+77777
+1.5 dozen eggs
+1.29	3
+03/06/2013
+35647
+Hamburger
+7.25	1
+03/06/2013
+31311
+The Bourne Supremacy
+19.95	1
+03/06/2013
+12121
+Toilet Paper
+11.75	1
+03/06/2013
+67899
+Ponds Lotion
+5.79	1
+03/06/2013
+61616
+VCR/DVD Player
+89.99	1
+03/06/2013
+61616
+Levi 501's
+21.50	4
+03/06/2013
+12345
+Farberware Cookware Set
+189.99	2
+03/06/2013
+61616
+Coffee Creamer
+4.75	5
+03/06/2013
+12345
+Legal Pads
+6.25	10
+03/07/2013
+12345
+1 gallon milk
+2.49	15
+03/07/2013
+12345
+Assorted Muffins
+5.89	1
+03/07/2013
+88888
+Home On The Range
+19.98	1
+03/07/2013
+77777
+Disney DVD Collection
+49.95	1
+03/07/2013
+88888
+A Bug's Life
+9.95	1
+03/07/2013
+77777
+The Princess Bride
+17.75	16
+03/07/2013
+61616
+All Laundry Detergent
+7.99	22
+03/07/2013
+35647
+Pringles
+6.99	8
+03/07/2013
+12121
+Levi 501's
+21.50	10
+03/07/2013
+12345
+diet Coke
+6.79	26
+03/13/2013
+12345
+1 gallon milk
+2.49	3
+03/13/2013
+12345
+Assorted Muffins
+5.89	4
+03/13/2013
+77777
+Rack of Lamb
+14.79	4
+03/13/2013
+88888
+Foster Farms Whole Chicken
+10.75	1
+03/13/2013
+61616
+Spiderman 2
+19.95	1
+03/13/2013
+61616
+While You Were Sleeping
+17.75	1
+03/13/2013
+12345
+All Laundry Detergent
+7.99	1
+03/13/2013
+67899
+Bkfst Cereal Variety Pack
+7.29	4
+03/13/2013
+12345
+Disney DVD Collection 2
+59.99	1
+03/13/2013
+12899
+Pepsi
+6.75	8
+03/13/2013
+61616
+Coke
+6.79	7
+03/13/2013
+12345
+Assorted Muffins
+5.89	10
+03/09/2013
+77777
+Crest Toothpaste
+7.59	1
+03/09/2013
+77777
+Grosse Pointe Blank DVD
+16.99	1
+03/09/2013
+88888
+Serendipity
+16.95	1
+03/09/2013
+12345
+Runaway Jury
+18.95 1
+03/09/2013
+61616
+Pork Tenderloin
+13.75	2
+03/09/2013
+61616
+Brie (Made in U.S.)
+7.25	2
+03/09/2013
+12345
+Fresh Mozzarella
+8.65 2
+03/09/2013
+12345
+Vine Ripe Tomatoes
+6.99	2
+03/09/2013
+77777
+Roasted Garlic Bread
+7.29	2
+03/09/2013
+61616
+Disney DVD Collection 2
+59.99	19
+03/09/2013
+12345
+Sprite
+6.75	6
+03/09/2013
+77777
+Coke
+6.79	2
+03/09/2013
+12345
+Propel Fitness Water
+12.50	3
