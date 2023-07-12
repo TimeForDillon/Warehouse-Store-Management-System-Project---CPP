@@ -2,11 +2,12 @@
 
 Member::Member() : name("")
 {
-
+    // Default constructor: Initializes the member object with default values
 }
 
-Member::Member(string n,int id, bool member_type, Date d)
+Member::Member(string n, int id, bool member_type, Date d)
 {
+    // Parameterized constructor: Initializes the member object with provided values
     this->name = n;
     this->member_id = id;
     this->type = member_type;
@@ -23,16 +24,19 @@ Member::Member(string n,int id, bool member_type, Date d)
 
 void Member::add_purchase(Sale s)
 {
+    // Adds a purchase (sale) to the member's purchase history
     this->purchases.add_sale(s);
 }
 
 void Member::update_expiration_date(Date d)
 {
+    // Updates the member's expiration date
     this->expiration_date = d;
 }
 
 void Member::calculate_rebate()
 {
+    // Calculates the rebate amount for the member based on their purchases
     double total = 0;
     for (int i = 0; i < this->purchases.size(); ++i)
         total += this->purchases[i].item.price * this->purchases[i].quantity;
@@ -44,8 +48,9 @@ void Member::calculate_rebate()
 
 void Member::calc_total_amount_spent()
 {
+    // Calculates the total amount spent by the member on purchases
     double total = 0;
-    for ( int i = 0; i < this->purchases.size(); ++i)
+    for (int i = 0; i < this->purchases.size(); ++i)
         total += this->purchases[i].item.price;
 
     total_amount_spent = total;
@@ -54,12 +59,14 @@ void Member::calc_total_amount_spent()
 
 void Member::markForBasic()
 {
+    // Marks the member's name to indicate Basic membership
     if (this->name[name.length() - 1] != '*')
         this->name += "*";
 }
 
 void Member::markForPreferred()
 {
+    // Marks the member's name to indicate Preferred membership
     if (this->name[name.length() - 2] != '*')
         this->name += "**";
 }

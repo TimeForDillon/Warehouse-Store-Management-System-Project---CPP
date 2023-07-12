@@ -7,25 +7,28 @@
 
 class MyTextStream : public QTextStream
 {
-    public:
-        MyTextStream(QString* str) : QTextStream(str) {}
+public:
+    // Constructor
+    MyTextStream(QString* str) : QTextStream(str) {}
 
-        MyTextStream& operator>>(QString& str)
+    // Overloaded stream extraction operator
+    MyTextStream& operator>>(QString& str)
+    {
+        QChar ch;
+
+        // Read characters until a tab or space is encountered
+        while (!atEnd())
         {
-            QChar ch;
+            QTextStream::operator>>(ch);
 
-            while (!atEnd())
-            {
-                QTextStream::operator>>(ch);
+            if (ch == '\t' || ch == ' ')
+                break;
 
-                if (ch == '\t' || ch == ' ')
-                    break;
-
-                str = str % ch;
-            }
-
-            return *this;
+            str = str % ch; // Append the character to the string
         }
+
+        return *this;
+    }
 };
 
 #endif // MYTEXTSTREAM_H

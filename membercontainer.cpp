@@ -12,6 +12,8 @@ MemberContainer::MemberContainer(QString file)
 
 int MemberContainer::basic_size()
 {
+    // Calculate the total number of basic members
+    // Iterate through members and count the ones with type = false
     int total_basics = 0;
 
     for (int i = 0; i < size(); i++)
@@ -25,6 +27,8 @@ int MemberContainer::basic_size()
 
 int MemberContainer::preferred_size()
 {
+    // Calculate the total number of preferred members
+    // Iterate through members and count the ones with type = true
     int total_preferred = 0;
 
     for (int i = 0; i < size(); i++)
@@ -38,6 +42,9 @@ int MemberContainer::preferred_size()
 
 int MemberContainer::find(int the_id, int pos)
 {
+    // Find a member with the given ID starting from the specified position
+    // Iterate through members from pos to size() and compare member_id
+    // Return the index of the found member or -1 if not found
     for (int i = pos; i < size(); i++)
     {
         if (members[i].get_member_id() == the_id)
@@ -49,6 +56,9 @@ int MemberContainer::find(int the_id, int pos)
 
 int MemberContainer::find(string the_name, int pos)
 {
+    // Find a member with the given name starting from the specified position
+    // Iterate through members from pos to size() and compare names
+    // Return the index of the found member or -1 if not found
     for (int i = pos; i < size(); i++)
     {
         if (strstr(members[i].get_name().c_str(), the_name.c_str()) != nullptr)
@@ -60,6 +70,10 @@ int MemberContainer::find(string the_name, int pos)
 
 int MemberContainer::find(int the_day, int the_month, int the_year, int pos)
 {
+    // Find a member with the given expiration date starting from the specified position
+    // If the_day or the_month is 0, only check the year
+    // Iterate through members from pos to size() and compare expiration dates
+    // Return the index of the found member or -1 if not found
     if (the_month == 0)
     {
         for (int i = pos; i < size(); i++)
@@ -91,6 +105,9 @@ int MemberContainer::find(int the_day, int the_month, int the_year, int pos)
 //Dillon - this returns the members name for the given id
 string MemberContainer::getMemberName(int id)
 {
+    // Get the name of a member with the given ID
+    // Iterate through members and compare member_id
+    // Return the name of the member or "Invalid ID" if not found
     for(int i = 0; i < int(this->members.size()); i++)
     {
         if(this->members[i].get_member_id() == id) return this->members[i].get_name();
@@ -101,6 +118,9 @@ string MemberContainer::getMemberName(int id)
 //Dillon - this returns the members type for the given id
 string MemberContainer::getMemberType(int id)
 {
+    // Get the type (basic or preferred) of a member with the given ID
+    // Iterate through members and compare member_id
+    // Return the type of the member or "Invalid ID" if not found
     for(int i = 0; i < int(this->members.size()); i++)
     {
         if(this->members[i].get_member_id() == id)
@@ -114,6 +134,7 @@ string MemberContainer::getMemberType(int id)
 
 void MemberContainer::view_single_member_purchases(string name)
 {
+    // Find a member with the given name and display their ID and total amount spent
     unsigned int index = 0;
     while (index < this->members.size() && this->members[index].get_name() != name)
         ++index;
@@ -129,7 +150,8 @@ void MemberContainer::view_single_member_purchases(string name)
 
 void MemberContainer::view_grand_total_purchases()
 {
-   double total = 0;
+    // Display the total purchase amount for each member and calculate the grand total
+    double total = 0;
     cout << "ID\tTotal Purchase Amount" << endl;
     for (unsigned int i = 0; i < this->members.size(); ++i)
     {
@@ -142,6 +164,9 @@ void MemberContainer::view_grand_total_purchases()
 
 void MemberContainer::view_expiration_dates(int month)
 {
+    // Create a temporary container to store members with the specified expiration month
+    // Iterate through members and add the ones with the matching month to the temporary container
+    // Display the ID and expiration date for each member in the temporary container
    MemberContainer temp;
     for (unsigned int i = 0; i < this->members.size(); ++i)
         if (int(this->members[i].get_expiration_date().get_month()) == month)
@@ -156,6 +181,10 @@ void MemberContainer::view_expiration_dates(int month)
 
 void MemberContainer::view_membership_dues(string type)
 {
+    // Create two temporary containers to store basic and preferred members separately
+    // Iterate through members and add them to the appropriate temporary container based on their type
+    // If type is "Basic" or "All", display the name and dues for each member in the basic container
+    // If type is "Preferred" or "All", display the name and dues for each member in the preferred container
     MemberContainer basic;
     MemberContainer preferred;
 
@@ -179,11 +208,17 @@ void MemberContainer::view_membership_dues(string type)
 
 void MemberContainer::view_preferred_members_rebate()
 {
-    ;
+    // Calculate and display the rebate amount for each preferred member
 }
 
 string MemberContainer::sales_report(Date date)
 {
+    // Generate a sales report for the specified date
+    // Iterate through members and their purchases to calculate the total amount spent on each item
+    // Store the results in a vector and calculate the final total
+    // Display the item names, amounts, and totals
+    // Display the final total and separate the basic and preferred members
+    // Return the sales report as a string
     stringstream stream;    // Convert output to a string
     string answer;          // Return string
     vector<string> basic;
@@ -275,6 +310,12 @@ string MemberContainer::sales_report(Date date)
 
 string MemberContainer::member_information(int index)
 {
+    // Generate information about a member at the specified index
+    // Get the member object at the specified index
+    // Retrieve the member's name, ID, type, and purchases
+    // Display the member information and the items purchased
+    // Calculate and display the total amount spent by the member
+    // Return the member information as a string
     stringstream ss;
     string dashes(30, '-');
     Member* m = &this->members[index];
@@ -295,6 +336,7 @@ string MemberContainer::member_information(int index)
 }
 void MemberContainer::add_member(string the_name, int the_id, bool the_type, Date the_date)
 {
+    // Add a new member to the container with the specified name, ID, type, and expiration date
     int rand_digit = 0;
     int rand_id = 0;
     int multiplier;
@@ -338,11 +380,13 @@ void MemberContainer::add_member(string the_name, int the_id, bool the_type, Dat
 
 void MemberContainer::add_member(Member m)
 {
+    // Add an existing member object to the container
     this->members.push_back(m);
 }
 
 void MemberContainer::remove_member(int id)
 {
+    // Remove a member with the specified ID from the container
     for (int i = 0; i < size(); i++)
     {
         if (id == members[i].get_member_id())
@@ -352,16 +396,19 @@ void MemberContainer::remove_member(int id)
 
 void MemberContainer::remove_member_by_index(int index)
 {
+    // Remove a member at the specified index from the container
     members.erase(members.begin() + index);
 }
 
 void MemberContainer::clear()
 {
+    // Clear all members from the container
     this->members.clear();
 }
 
 void MemberContainer::inputSales(const char* file_name)
 {
+    // Read sales data from a file and update member purchase information accordingly
     ifstream inFile;
     string line;
     inFile.open(file_name);
@@ -415,6 +462,12 @@ void MemberContainer::inputSales(const char* file_name)
 
 int MemberContainer::load(QString file)
 {
+    // Load member data from a file and populate the container
+    // Open the file for reading
+    // Read member information line by line
+    // Create a new member object with the read information and add it to the container
+    // Close the file
+    // Return 0 for success or 1 for failure
     QFile inFile;
     Date date;
     string nameHolder;
@@ -460,6 +513,7 @@ int MemberContainer::load(QString file)
 
 void MemberContainer::sort_by_member_id()
 {
+    // Sort members based on their member ID in ascending order
     stable_sort( members.begin( ), members.end( ), [ ]( const Member& lhs, const Member& rhs )
     {
        return lhs.get_member_id() < rhs.get_member_id();
@@ -468,6 +522,7 @@ void MemberContainer::sort_by_member_id()
 
 void MemberContainer::sort_by_name()
 {
+    // Sort members based on their names in ascending order
     stable_sort( members.begin( ), members.end( ), [ ]( const Member& lhs, const Member& rhs )
     {
        return lhs.get_name() < rhs.get_name();
@@ -476,6 +531,7 @@ void MemberContainer::sort_by_name()
 
 void MemberContainer::sort_by_date()
 {
+    // Sort members based on their expiration dates in ascending order
     stable_sort( members.begin( ), members.end( ), [ ]( const Member& lhs, const Member& rhs )
     {
          return lhs.get_expiration_date().get_day() < rhs.get_expiration_date().get_day();
@@ -494,6 +550,7 @@ void MemberContainer::sort_by_date()
 
 void MemberContainer::typeChange()
 {
+    // Change the type (basic or preferred) of members based on their total amount spent
     for(int i = 0; i < int(this->members.size()); i++)
     {
         if(this->members[i].get_total_amount_spent() < 300.00 && this->members[i].get_type() == true) //true = preferred

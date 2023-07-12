@@ -2,52 +2,22 @@
 #include <iostream>
 using namespace std;
 
-/************************************************************
- * Constructor Date: Class Date
- * _________________________________________________________
- *  This method is the default constructor of the Date class.
- *  Default date is January 1, 2000.
- * _________________________________________________________
- *  PRE-CONDITIONS
- *   None
- *
- *  POST-CONDITIONS
- *      Constructs default rational number
- ***********************************************************/
 Date::Date()
 {
+    // Default constructor: Initializes the date to January 1, 2000
     day = 1;
     month = 1;
     monthName = "January";
     year = 2000;
 }
 
-/************************************************************
- * Constructor Date(unsigned m,
- *                  unsigned d,
- *                  unsigned y)): Class Date
- * _________________________________________________________
- *  This method constructs a date given the month, date, and
- *   year as integers.
- * _________________________________________________________
- *  PRE-CONDITIONS
- *   The following need previously defined values:
- *      m: month
- *      d: day
- *      y: year
- *
- *  POST-CONDITIONS
- *      Constructs date with given values.
- ***********************************************************/
-Date::Date(unsigned m, // IN: month as integer
-           unsigned d, // IN: day
-           unsigned y) // IN: year
+Date::Date(unsigned m, unsigned d, unsigned y)
 {
-    int num_of_days;    // OUTPUT: number of days in the month
+    // Parameterized constructor: Initializes the date based on provided month, day, and year values
+    // The month and day values are adjusted to valid ranges if necessary
+    // If there was an error setting the date attributes, a correction is made and a message is displayed
+    int num_of_days = daysPerMonth(month, y);
 
-    // OUTPUT: set the month from the given value
-    //          if the month is invalid, make it as
-    //          close to valid as possible
     if (m == 0)
         month = 1;
     else if (m > 12)
@@ -55,12 +25,6 @@ Date::Date(unsigned m, // IN: month as integer
     else
         month = m;
 
-    // OUTPUT: daysPerMonth -> get the number of days in the month
-    num_of_days = daysPerMonth(month, y);
-
-    // OUTPUT: set the day from the given value
-    //          if the day is invalid, make it as close
-    //          to valid as possible
     if (d < 1)
         day = 1;
     else if (d > num_of_days)
@@ -68,12 +32,9 @@ Date::Date(unsigned m, // IN: month as integer
     else
         day = d;
 
-    // OUTPUT: name -> set the year and month name
     year = y;
     monthName = name(month);
 
-    // OUTPUT: if there was an error when setting the attributes,
-    //          display a message and the date it was corrected to
     if (m < 1 || m > 12 || d < 1 || d > num_of_days) {
         cout << "Invalid date values: Date corrected to ";
         printNumeric();
@@ -81,39 +42,18 @@ Date::Date(unsigned m, // IN: month as integer
     }
 }
 
-/************************************************************
- * Constructor Date(const string &mn,
- *                  unsigned d,
- *                  unsigned y)): Class Date
- * _________________________________________________________
- *  This method constructs a date given the day and year as
- *   integers and the month name as a string.
- * _________________________________________________________
- *  PRE-CONDITIONS
- *   The following need previously defined values:
- *      mn: month name
- *      d: day
- *      y: year
- *
- *  POST-CONDITIONS
- *      Constructs date with month as a string.
- ***********************************************************/
-Date::Date(const string &mn,    // IN: month as a string
-           unsigned d,          // IN: day
-           unsigned y)          // IN: year
+Date::Date(const string &mn, unsigned d, unsigned y)
 {
-    int num_of_days;            // OUTPUT: number of days in the month
+    // Parameterized constructor: Initializes the date based on provided month name, day, and year values
+    // The month name is converted to an integer month value and validated
+    // The day value is adjusted to a valid range if necessary
+    // If there was an error setting the date attributes, a correction is made and a message is displayed
+    int num_of_days = daysPerMonth(month, y);
+    monthName = string() + static_cast<char>(toupper(mn[0])) + mn.substr(1, mn.size());
 
-    // OUTPUT: make the first character of the given month uppercase
-    monthName = string() +
-                static_cast<char>(toupper(mn[0])) + mn.substr(1, mn.size());
-
-    // OUTPUT: number -> convert the string month to an integer
     month = number(mn);
 
     if (month != 0) {
-        // OUTPUT: check if the day is correct
-        num_of_days = daysPerMonth(month, y);
         if (d < 1)
             day = 1;
         else if (d > num_of_days)
@@ -123,11 +63,10 @@ Date::Date(const string &mn,    // IN: month as a string
 
         year = y;
 
-        // OUTPUT: if there was an error, display a message
         if (d < 1 || d > num_of_days) {
-        cout << "Invalid date values: Date corrected to ";
-        printNumeric();
-        cout << '.' << endl;
+            cout << "Invalid date values: Date corrected to ";
+            printNumeric();
+            cout << '.' << endl;
         }
     }
     else {
@@ -139,59 +78,33 @@ Date::Date(const string &mn,    // IN: month as a string
     }
 }
 
-/************************************************************
- * Accessor printNumeric: Class Date
- * _________________________________________________________
- *  This method displays the date in a numeric format
- * _________________________________________________________
- *  PRE-CONDITIONS
- *      None
- *
- *  POST-CONDITIONS
- *      Displays date
- ***********************************************************/
 void Date::printNumeric() const
 {
+    // Prints the date in numeric format (mm/dd/yyyy)
     cout << month << '/' << day << '/' << year;
 }
 
-/************************************************************
- * Accessor printAlpha: Class Date
- * _________________________________________________________
- *  This method displays the date in an alphabetical format
- * _________________________________________________________
- *  PRE-CONDITIONS
- *      None
- *
- *  POST-CONDITIONS
- *      Displays date
- ***********************************************************/
 void Date::printAlpha() const
 {
+    // Prints the date in alpha format (monthName day, year)
     cout << monthName << ' ' << day << ", " << year;
 }
 
-/************************************************************
- * Accessor addDays: Class Date
- * _________________________________________________________
- *  This method adds (or subtracts) days from the date and
- *   returns the result as a new date
- * _________________________________________________________
- *  PRE-CONDITIONS
- *      days: the number of days to add/subtract
- *
- *  POST-CONDITIONS
- *      Returns Date instance;
- ***********************************************************/
 Date Date::addDays(int days) const
 {
+    // Adds the specified number of days to the date and returns the resulting date
+    // The days value can be positive or negative
+    // If days > 0, the date is incremented by that many days
+    // If days < 0, the date is decremented by the absolute value of days
+    // The resulting date is adjusted based on the number of days in each month and leap years
     int current_day = day;
     int current_month = month;
     int current_year = year;
     int daysInMonth;
-    int count = 0;
+
     if (days > 0)
     {
+        // Increment the date by the specified number of days
         while (days > 0)
         {
             while (current_month <= 12)
@@ -203,7 +116,6 @@ Date Date::addDays(int days) const
                     if (days == 0)
                         return Date(current_month, current_day, current_year);
                     current_day += 1;
-
                 }
                 current_day = 1;
                 current_month += 1;
@@ -214,7 +126,7 @@ Date Date::addDays(int days) const
     }
     else
     {
-        int count = 0;
+        // Decrement the date by the absolute value of the specified number of days
         while (days < 0)
         {
             while (current_month >= 1)
@@ -222,8 +134,6 @@ Date Date::addDays(int days) const
                 while (current_day >= 1)
                 {
                     ++days;
-                    count += 1;
-                    cout << current_month << '/' << current_day << '/' << current_year << '\t' << "days = " << days << endl;
                     current_day -= 1;
                     if (days == 0)
                         return Date(current_month, current_day, current_year);
@@ -238,47 +148,22 @@ Date Date::addDays(int days) const
     return Date(current_month, current_day, current_year);
 }
 
-// PRIVATE HELPER FUNCTIONS
-/************************************************************
- * Accessor isLeap: Class Date
- * _________________________________________________________
- *  This method determines whether a given year is a leap year
- * _________________________________________________________
- *  PRE-CONDITIONS
- *   The following need previously defined values:
- *      year: the year to check
- *
- *  POST-CONDITIONS
- *      Returns true if leap year, false otherwise
- ***********************************************************/
-bool Date::isLeap(unsigned y) const // IN: year to check
+bool Date::isLeap(unsigned y) const
 {
+    // Checks if the given year is a leap year
     if (y % 4 == 0) {
         if (y % 100 == 0)
             if (y % 400 == 0)
                 return true;
-            return false;
+        return false;
         return true;
     }
     return false;
 }
 
-/************************************************************
- * Accessor daysPerMonth: Class Date
- * _________________________________________________________
- *  This method return the number of days in a given month
- * _________________________________________________________
- *  PRE-CONDITIONS
- *   The following need previously defined values:
- *      month: the month to check
- *      year: if leap year, # of days in February changes
- *
- *  POST-CONDITIONS
- *      Returns # of days in the month
- ***********************************************************/
-unsigned Date::daysPerMonth(unsigned m,         // IN: month to check
-                            unsigned y) const   // IN: year
+unsigned Date::daysPerMonth(unsigned m, unsigned y) const
 {
+    // Returns the number of days in the specified month of the given year
     const int daysInMonth[12] = {31, 28, 31, 30, 31, 30, 31,
                                  31, 30, 31, 30, 31};
     if (m < 1)
@@ -292,20 +177,9 @@ unsigned Date::daysPerMonth(unsigned m,         // IN: month to check
     return daysInMonth[m - 1];
 }
 
-/************************************************************
- * Accessor name: Class Date
- * _________________________________________________________
- *  This method converts an integer month into a string
- * _________________________________________________________
- *  PRE-CONDITIONS
- *   The following need previously defined values:
- *      month: the month as an integer
- *
- *  POST-CONDITIONS
- *      Returns a string; the name of the month
- ***********************************************************/
-string Date::name(unsigned m) const // IN: month (int)
+string Date::name(unsigned m) const
 {
+    // Returns the name of the month based on the month number
     const string MONTHS[12] = {"January", "February", "March", "April",
                                "May", "June", "July", "August",
                                "September", "October", "November",
@@ -313,20 +187,9 @@ string Date::name(unsigned m) const // IN: month (int)
     return MONTHS[m - 1];
 }
 
-/************************************************************
- * Accessor number: Class Date
- * _________________________________________________________
- *  This method converts a string month into an integer
- * _________________________________________________________
- *  PRE-CONDITIONS
- *   The following need previously defined values:
- *      month: the month as a string
- *
- *  POST-CONDITIONS
- *      Returns an int; the month as an integer
- ***********************************************************/
-unsigned Date::number(const string &mn) const // IN: month (string)
+unsigned Date::number(const string &mn) const
 {
+    // Returns the month number based on the month name
     const string MONTHS[12] = {"January", "February", "March", "April",
                                "May", "June", "July", "August",
                                "September", "October", "November",
@@ -336,19 +199,20 @@ unsigned Date::number(const string &mn) const // IN: month (string)
         if (mn == MONTHS[i])
             return i + 1;
     }
-    // if the month doesn't exist, return 0
-    return 0;
+    return 0; // Return 0 if the month doesn't exist
 }
 
 bool Date::operator==(const Date& other)
 {
+    // Equality operator: Checks if two Date objects have the same month, day, and year
     return this->month == other.month &&
-            this->day == other.day &&
-            this->year == other.year;
+           this->day == other.day &&
+           this->year == other.year;
 }
 
 string Date::returnAlpha() const
 {
+    // Returns the date in alpha format as a string
     stringstream ss;
     ss << this->monthName << ' ' << this->day << ", " << this->year;
     return ss.str();
@@ -356,6 +220,7 @@ string Date::returnAlpha() const
 
 string Date::returnNumeric() const
 {
+    // Returns the date in numeric format as a string
     stringstream ss;
     if (this->month < 10)
         ss << '0' << this->month;

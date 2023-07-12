@@ -6,23 +6,24 @@
 
 struct Sale
 {
-    Item item;
-    Date date_of_purchase;
-    int id;
-    double price;
-    int quantity = 0;
+    Item item;                  // Item purchased
+    Date date_of_purchase;      // Date of purchase
+    int id;                     // Sale ID
+    double price;               // Price of the item
+    int quantity = 0;           // Quantity of items purchased
 
+    // Default constructor
     Sale() {}
+
+    // Constructor with parameters
     Sale(Item i, Date d, int id, int q): item(i), date_of_purchase(d), id(id), quantity(q) { }
 
-    //sales.push_back(Sale(Item(itemName, priceHolder.toDouble()), date, id, quantityHolder.toInt()));
-
-    //Dillon
-    string getItemName() const { return this->item.name; }
-    double getItemPrice() const { return this->item.price; }
-    string getDate() const { return this->date_of_purchase.returnNumeric(); }
-    int getID() const { return this->id; }
-    int getQuantity() const { return this->quantity; }
-    //Dillon
+    // Getters for member variables
+    string getItemName() const { return this->item.name; }               // Returns the name of the item
+    double getItemPrice() const { return this->item.price; }             // Returns the price of the item
+    string getDate() const { return this->date_of_purchase.returnNumeric(); }   // Returns the date of purchase as a string
+    int getID() const { return this->id; }                               // Returns the sale ID
+    int getQuantity() const { return this->quantity; }                   // Returns the quantity of items purchased
 };
+
 #endif // SALE_H
